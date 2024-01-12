@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->integer('phone number');
             $table->string('full name');
-            $table->email('full name');
+            $table->string('email');
             $table->date('Entry timing');
             $table->date('Exit timing');
             $table->integer('number of guests');

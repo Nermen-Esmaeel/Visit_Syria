@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('governorates-EN', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->enum('governorates', 
             [
@@ -53,12 +53,13 @@ return new class extends Migration
 
         });
     }
+    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('governorates');
+        Schema::dropIfExists('cities');
     }
 };

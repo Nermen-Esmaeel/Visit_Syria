@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
-            $table->foreignId('governorate_id')->constrained('governorates')->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('content_title-EN');
             $table->string('content_title-AR');
             $table->string('content-EN');

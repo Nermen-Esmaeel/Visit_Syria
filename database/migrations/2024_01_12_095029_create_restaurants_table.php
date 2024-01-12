@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('governorate_id')->constrained('governorates')->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('title-EN');
             $table->string('title-AR');
             $table->string('rating');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('website')->nullable();
-            $table->enum('working time ', ['24/24', '16/24'])->default(['24/24']);
+            $table->enum('working_time', ['24/24', '16/24'])->default('24/24');
             $table->timestamps();
             $table->softDeletes();
         });
