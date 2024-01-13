@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
-            $table->string('title-EN');
-            $table->string('title-AR');
+            $table->string('title_en');
+            $table->string('title_ar');
             $table->string('rating');
-            $table->string('description-EN');
-            $table->string('description-AR');
-            $table->enum('rooms-EN', ['For one', 'For tow people','Suite']);
-            $table->enum('rooms-AR', ['لشخص واحد', 'لشخصين','جناح عائلي']);
+            $table->string('description_en');
+            $table->string('description_ar');
+            $table->enum('rooms_en', ['For one', 'For tow people','Suite']);
+            $table->enum('rooms_ar', ['لشخص واحد', 'لشخصين','جناح عائلي']);
             $table->enum('discounts', ['20%', '40%','50%']);
             $table->integer('phone number');
             $table->string('email')->nullable();

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
-            $table->string('title-EN');
-            $table->string('title-AR');
+            $table->string('title_en');
+            $table->string('title_ar');
             $table->string('rating');
-            $table->string('description-EN');
-            $table->string('description-AR');
-            $table->bigInteger('phone number');
+            $table->string('description_en');
+            $table->string('description_ar');
+            $table->bigInteger('phone_number');
             $table->string('email')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();

@@ -14,27 +14,16 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->morphs('photoable');
-            $table->string('photos');
-            $table->enum('type-EN', [
+            $table->string('photo_path');
+            $table->enum('type_en', [
                 'cover',
-                'logo', 
+                'logo',
                 'hotel photos',
                 'reservation photos',
-                'menu', 
+                'menu',
                 'blog photos',
                 'tourist site photos',
                 'static photo']);
-                $table->enum('type-AR', [
-                    'صورة غلاف',
-                    'لوغو', 
-                    'صور الفندق',
-                    'صور الحجز',
-                    'قائمة الطعام', 
-                    'صور المقالة',
-                    'صور الأماكن السياحية',
-                    'صور ستاتيكية'
-                ]);
-
             $table->timestamps();
         });
     }

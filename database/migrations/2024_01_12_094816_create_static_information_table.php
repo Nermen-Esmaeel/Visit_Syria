@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('static_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
-            $table->string('picture name');
-            $table->string('content_title-EN')->nullable();
-            $table->string('content_title-AR')->nullable();
-            $table->string('content-EN')->nullable();
-            $table->string('content-AR')->nullable();
+            $table->string('picture_name');
+            $table->string('content_title_en')->nullable();
+            $table->string('content_title_ar')->nullable();
+            $table->string('content_en')->nullable();
+            $table->string('content_ar')->nullable();
             $table->string('photos')->nullable();
             $table->boolean('is wallpaper');
-            $table->enum('type-EN', [
+            $table->enum('type', [
                 'landing page',
                 'blogs',
                 'explore-hotels',
@@ -38,24 +38,6 @@ return new class extends Migration
                 'blogs-nature',
                 'blogs-tourism',
                 ])->nullable();
-
-                $table->enum('type-AR', [
-                    'الصفحة الرئيسية',
-                    'المقالات',
-                    'استكشف الفنادق',
-                    'استكشف المطاعم',
-                    'استكشف المواقع السياحية',
-                    'التوصيات-الفنادق',
-                    'التوصيات-المطاعم',
-                    'التوصيات-المنتجعات',
-                    'التوصيات-المواقع الطبيعية',
-                    'التوصيات-المعالم الأثرية',
-                    'المقالات-التاريخ',
-                    'المقالات-الآثار',
-                    'المقالات-الحضارات',
-                    'المقالات-الطبيعة',
-                    'المقالات-السياحة',
-                    ])->nullable();
 
             $table->timestamps();
         });

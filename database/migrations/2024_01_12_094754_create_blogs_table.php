@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
-            $table->string('content_title-EN');
-            $table->string('content_title-AR');
-            $table->string('content-EN');
-            $table->string('content-AR');
+            $table->string('content_title_en');
+            $table->string('content_title_ar');
+            $table->string('content_en');
+            $table->string('content_ar');
             $table->softDeletes();
             $table->timestamps();
         });

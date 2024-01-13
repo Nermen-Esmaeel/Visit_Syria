@@ -15,11 +15,11 @@ class Rating extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name-EN',
-        'name-AR',
+        'name_en',
+        'name_ar',
         'value',
-        
-           
+
+
     ];
     /**
      * Get the hotel that owns the Rating

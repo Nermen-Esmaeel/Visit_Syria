@@ -17,11 +17,11 @@ class StaticInformation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'picture name',
-        'content_title-AR',
-        'content_title-EN',
-        'content-EN',
-        'content-AR',
+        'picture_name',
+        'content_title_en',
+        'content_title_ar',
+        'content_en',
+        'content_ar',
         'photo',
     ];
 

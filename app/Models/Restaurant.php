@@ -20,19 +20,19 @@ class Restaurant extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title-EN',
-        'title-AR',
+        'title_en',
+        'title_ar',
         'rating',
-        'description-EN',
-        'description-AR',
-        'phone number',
+        'description_en',
+        'description_ar',
+        'phone_number',
         'email',
         'facebook',
         'instagram',
         'youtube',
         'twitter',
         'website',
-           
+
     ];
 
 
@@ -51,7 +51,7 @@ class Restaurant extends Model
 
         return $this->morphMany(Favorite::class , 'favoritable') ;
     }
-    
+
     /**
      * Get all of the locations for the Hotel
      *

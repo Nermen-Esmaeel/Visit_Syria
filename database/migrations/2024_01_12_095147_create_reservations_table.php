@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->integer('phone number');
-            $table->string('full name');
+            $table->integer('phone_number');
+            $table->string('full_name');
             $table->string('email');
-            $table->date('Entry timing');
-            $table->date('Exit timing');
-            $table->integer('number of guests');
-            $table->enum('rooms-EN', ['For one', 'For tow people','Suite']);
-            $table->enum('rooms-AR', ['لشخص واحد', 'لشخصين','جناح عائلي']);
+            $table->date('Entry_timing');
+            $table->date('Exit_timing');
+            $table->integer('number_of_guests');
+            $table->enum('rooms', ['For one', 'For tow people','Suite','لشخص واحد', 'لشخصين','جناح عائلي']);
             $table->text('description');
             $table->softDeletes();
             $table->timestamps();
