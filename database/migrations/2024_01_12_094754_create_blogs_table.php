@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+            $table->enum('category', [
+                'Archaeologica',
+                'Natural',
+                ])->nullable();
             $table->string('content_title_en');
             $table->string('content_title_ar');
-            $table->string('content_en');
-            $table->string('content_ar');
+            $table->longText('content_en');
+            $table->longText('content_ar');
             $table->softDeletes();
             $table->timestamps();
         });

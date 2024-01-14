@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('phone_number');
             $table->string('full_name');
             $table->string('email');
-            $table->date('Entry_timing');
-            $table->date('Exit_timing');
+            $table->date('entry_timing');
+            $table->date('exit_timing');
             $table->integer('number_of_guests');
             $table->enum('rooms', ['For one', 'For tow people','Suite','لشخص واحد', 'لشخصين','جناح عائلي']);
             $table->text('description');

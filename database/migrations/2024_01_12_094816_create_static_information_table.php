@@ -15,10 +15,17 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->string('picture_name');
+            $table->enum('category', [
+                'Tourism',
+                'Natural',
+                'Civilizations',
+                'Archaeology',
+                'History'
+                ])->nullable();
             $table->string('content_title_en')->nullable();
             $table->string('content_title_ar')->nullable();
-            $table->string('content_en')->nullable();
-            $table->string('content_ar')->nullable();
+            $table->longText('content_en')->nullable();
+            $table->longText('content_ar')->nullable();
             $table->string('photos')->nullable();
             $table->boolean('is wallpaper');
             $table->enum('type', [

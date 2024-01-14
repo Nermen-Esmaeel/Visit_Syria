@@ -111,4 +111,14 @@ class Hotel extends Model
     {
         return $this->hasOne(Service::class);
     }
+
+    /**
+     * Get all of the comments for the Hotel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'hotel_id', 'id');
+    }
 }

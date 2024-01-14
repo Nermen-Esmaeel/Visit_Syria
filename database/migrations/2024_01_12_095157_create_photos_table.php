@@ -15,15 +15,6 @@ return new class extends Migration
             $table->id();
             $table->morphs('photoable');
             $table->string('photo_path');
-            $table->enum('type_en', [
-                'cover',
-                'logo',
-                'hotel photos',
-                'reservation photos',
-                'menu',
-                'blog photos',
-                'tourist site photos',
-                'static photo']);
             $table->timestamps();
         });
     }
