@@ -13,11 +13,11 @@ class TouristSite extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title-EN',
-        'title-AR',
+        'title_en',
+        'title_ar',
         'rating',
-        'description-EN',
-        'description-AR',
+        'description_en',
+        'description_ar',
         'email'
     ];
 
@@ -36,7 +36,7 @@ class TouristSite extends Model
 
         return $this->morphMany(Favorite::class , 'favoritable') ;
     }
-    
+
     /**
      * Get all of the locations for the Hotel
      *

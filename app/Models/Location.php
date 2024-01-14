@@ -16,12 +16,12 @@ class Location extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'street-EN',
-        'street-AR',
-        'city-EN',
-        'city-AR',
-        'governorate-EN',
-        'governorate-AR',
+        'street_en',
+        'street_ar',
+        'city_en',
+        'city_ar',
+        'governorate_en',
+        'governorate_ar',
     ];
 
 
@@ -33,7 +33,7 @@ class Location extends Model
     public function hotel(): BelongsTo
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');
-    } 
+    }
 
 
     /**

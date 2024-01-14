@@ -19,11 +19,11 @@ class Hotel extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title-EN',
-        'title-AR',
+        'title_en',
+        'title_ar',
         'rating',
-        'description-EN',
-        'description-AR',
+        'description_en',
+        'description_ar',
         'phone number',
         'email',
         'facebook',
@@ -31,7 +31,7 @@ class Hotel extends Model
         'youtube',
         'twitter',
         'website',
-           
+
     ];
 
     /**
@@ -110,5 +110,15 @@ class Hotel extends Model
     public function services(): HasOne
     {
         return $this->hasOne(Service::class);
+    }
+
+    /**
+     * Get all of the comments for the Hotel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'hotel_id', 'id');
     }
 }

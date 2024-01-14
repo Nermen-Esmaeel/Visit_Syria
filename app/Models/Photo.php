@@ -16,16 +16,16 @@ class Photo extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'photo',
+        'photo_path',
     ];
 
-    
-    public function photoable(): MorphTo 
+
+    public function photoable(): MorphTo
     {
         return $this->morphTo();
 
     }
 
-    
+
 
 }

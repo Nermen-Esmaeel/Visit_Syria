@@ -16,12 +16,12 @@ class Reservation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'phone number',
-        'full name',
+        'phone_number',
+        'full_name',
         'email',
-        'Entry timing',
-        'Exit timing',
-        'number of guests',
+        'Entry_timing',
+        'Exit_timing',
+        'number_of_guests',
         'description',
     ];
 

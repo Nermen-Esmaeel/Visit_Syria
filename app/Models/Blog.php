@@ -17,10 +17,10 @@ class Blog extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'content_title-EN',
-        'content_title-AR',
-        'content-EN',
-        'content-AR',
+        'content_title_en',
+        'content_title_ar',
+        'content_en',
+        'content_ar',
     ];
 
     /**
@@ -47,5 +47,5 @@ class Blog extends Model
     {
        return $this->morphMany(Photo::class , 'photoable') ;
     }
-    
+
 }

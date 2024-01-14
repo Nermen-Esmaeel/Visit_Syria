@@ -16,8 +16,8 @@ class Service extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name-EN',
-        'name-AR',      
+        'name_en',
+        'name_ar',
     ];
 
     /**
@@ -39,5 +39,5 @@ class Service extends Model
     {
         return $this->belongsTo(User::class, 'restaurant_id');
     }
-    
+
 }

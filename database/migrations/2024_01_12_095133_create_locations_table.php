@@ -17,12 +17,12 @@ return new class extends Migration
             $table->foreignId('restaurant_id')->constrained('restaurants')->cascadeOnDelete();
             $table->foreignId('site_id')->constrained('tourist_sites')->cascadeOnDelete();
             $table->foreignId('blog_id')->constrained('blogs')->cascadeOnDelete();
-            $table->string('street-EN');
-            $table->string('street-AR');
-            $table->string('city-EN');
-            $table->string('city-AR');
-            $table->string('governorate-EN');
-            $table->string('governorate-AR');
+            $table->string('street_en');
+            $table->string('street_ar');
+            $table->string('city_en');
+            $table->string('city_ar');
+            $table->string('governorate_en');
+            $table->string('governorate_ar');
             $table->softDeletes();
             $table->timestamps();
         });

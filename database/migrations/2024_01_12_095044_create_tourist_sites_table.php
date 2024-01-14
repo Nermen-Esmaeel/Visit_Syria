@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('tourist_sites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
-            $table->string('title-EN');
-            $table->string('title-AR');
+            $table->string('photo_cover');
+            $table->string('photo_logo');
+            $table->string('title_en');
+            $table->string('title_ar');
             $table->string('rating');
-            $table->string('description-EN');
-            $table->string('description-AR');
+            $table->text('description_en');
+            $table->text('description_ar');
             $table->string('email')->nullable();
             $table->enum('working_time', ['24/24', '16/24'])->default('24/24');
             $table->timestamps();
