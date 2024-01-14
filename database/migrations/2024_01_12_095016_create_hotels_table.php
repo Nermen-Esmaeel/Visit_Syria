@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('title-EN');
             $table->string('title-AR');
-            $table->string('rating');
+            $table->double('rating');
             $table->string('description-EN');
             $table->string('description-AR');
             $table->enum('rooms-EN', ['For one', 'For tow people','Suite']);
