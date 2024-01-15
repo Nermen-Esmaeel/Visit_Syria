@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('hotel_id')->constrained('hotels')->cascadeOnDelete();
-            $table->text('content');
+            $table->text('content_en');
+            $table->text('content_ar');
             $table->timestamps();
         });
     }

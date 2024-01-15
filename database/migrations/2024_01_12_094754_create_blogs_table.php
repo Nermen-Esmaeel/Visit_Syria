@@ -8,7 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
+    */
     public function up(): void
     {
         Schema::create('blogs', function (Blueprint $table) {
@@ -19,6 +19,7 @@ return new class extends Migration
                 'Archaeologica',
                 'Natural',
                 ])->nullable();
+            $table->string('photo_cover');
             $table->string('content_title_en');
             $table->string('content_title_ar');
             $table->longText('content_en');
