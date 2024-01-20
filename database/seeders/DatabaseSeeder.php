@@ -22,5 +22,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@argon.com',
             'password' => bcrypt('secret')
         ]);
+
+        $this->call([
+            CitySeeder::class,
+            HotelSeeder::class,
+            RestaurantSeeder::class,
+            SiteSeeder::class,
+            ServicesSeeder::class,
+            RatingSeeder::class,
+            RoomSeeder::class,
+            OfferSeeder::class,
+
+        ]);
     }
 }

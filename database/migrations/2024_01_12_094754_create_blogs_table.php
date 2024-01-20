@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+            $table->string('street_en');
+            $table->string('street_ar');
+            $table->string('city_en');
+            $table->string('city_ar');
             $table->enum('category', [
                 'Archaeologica',
                 'Natural',

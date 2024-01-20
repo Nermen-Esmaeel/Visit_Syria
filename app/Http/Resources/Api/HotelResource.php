@@ -5,10 +5,6 @@ namespace App\Http\Resources\Api;
 use App\Models\Comment;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\Api\CityResource;
-use App\Http\Resources\Api\OffersResource;
-use App\Http\Resources\Api\RatingResource;
-use App\Http\Resources\Api\ServicesResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HotelResource extends JsonResource
@@ -21,9 +17,9 @@ class HotelResource extends JsonResource
     public function toArray($request): array
     {
         if ($request->header('lan')=="en") {
-            
+
             return [
-                
+
                 'City' =>new CityResource($this->city),
                 'Services_Rating' =>RatingResource::collection($this->rating),
                 'Services' =>ServicesResource::collection($this->services),
@@ -35,8 +31,9 @@ class HotelResource extends JsonResource
                 'Photos' =>PhotosResource::collection($this->photos),
                 'Available_rooms' => RoomsResource::collection($this->rooms),
                 'Offers' => OffersResource::collection($this->offers),
-                'Location' =>LocationResource::collection($this->locations),
-                'phone number' => $this->phoneNumber,
+                'street_en' => $this->street_en,
+                'city_en'   => $this->city_en,
+                'phone_number' => $this->phoneNumber,
                 'Email' => $this->email,
                 'Facebook' => $this->facebook,
                 'Instagram' => $this->instagram,
@@ -46,12 +43,12 @@ class HotelResource extends JsonResource
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
                 'Comments'  =>CommentsResource::collection($this->comments),
-    
+
             ];
 
         } elseif ($request->header('lan')=="ar"){
             return [
-                
+
                 'City' =>new CityResource($this->city),
                 'Services_Rating' => RatingResource::collection($this->rating),
                 'Services' => ServicesResource::collection($this->services),
@@ -63,7 +60,8 @@ class HotelResource extends JsonResource
                 'Photos' =>$this->photos,
                 'Available_rooms' => RoomsResource::collection($this->rooms),
                 'Discounts' => $this->discounts,
-                'Location' =>LocationResource::collection($this->locations),
+                'street_ar' => $this->street_ar,
+                'city_ar'   => $this->city_ar,
                 'phone number' => $this->phoneNumber,
                 'Email' => $this->email,
                 'Facebook' => $this->facebook,
@@ -74,10 +72,10 @@ class HotelResource extends JsonResource
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
                 'Comments'  =>CommentsResource::collection($this->comments),
-    
+
             ];
         }
-        
-       
+
+
     }
 }

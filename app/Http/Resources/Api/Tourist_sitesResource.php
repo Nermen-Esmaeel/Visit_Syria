@@ -15,7 +15,7 @@ class Tourist_sitesResource extends JsonResource
      */
     public function toArray($request): array
     {
-    
+
         if(($request->header('lan')=="en")){
             return [
 
@@ -25,7 +25,8 @@ class Tourist_sitesResource extends JsonResource
                 'Site_rating' =>$this->Site_rating,
                 'Description' => $this->description_en,
                 'Photos' =>PhotosResource::collection($this->photos),
-                'Location' =>LocationResource::collection($this->locations),
+                'street_en' => $this->street_en,
+                'city_en'   => $this->city_en,
                 'Email' => $this->email,
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
@@ -34,7 +35,7 @@ class Tourist_sitesResource extends JsonResource
             ];
         }
         elseif(($request->header('lan')=="ar")){
-           
+
             return [
 
                 'City' =>new CityResource($this->city),
@@ -43,7 +44,8 @@ class Tourist_sitesResource extends JsonResource
                 'Site_rating' =>$this->Site_rating,
                 'Description' => $this->description_ar,
                 'Photos' =>PhotosResource::collection($this->photos),
-                'Location' =>LocationResource::collection($this->locations),
+                'street_ar' => $this->street_ar,
+                'city_ar'   => $this->city_ar,
                 'Email' => $this->email,
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
@@ -53,6 +55,6 @@ class Tourist_sitesResource extends JsonResource
             ];
         }
 
-        
+
     }
 }

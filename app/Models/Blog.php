@@ -17,6 +17,10 @@ class Blog extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'street_en',
+        'street_ar',
+        'city_en',
+        'city_ar',
         'content_title_en',
         'content_title_ar',
         'content_en',

@@ -22,6 +22,10 @@ class Restaurant extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'street_en',
+        'street_ar',
+        'city_en',
+        'city_ar',
         'title_en',
         'title_ar',
         'rating',
@@ -40,10 +44,10 @@ class Restaurant extends Model
     public function toSearchableArray()
     {
         return [
-            
+
             'title_en' => $this->name_en,
             'title_ar' => $this->name_ar,
-            
+
         ];
     }
 
@@ -126,7 +130,7 @@ class Restaurant extends Model
         return $this->hasMany(Service::class);
     }
 
-   
+
 
 
 }

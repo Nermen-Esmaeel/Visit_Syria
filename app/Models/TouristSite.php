@@ -13,6 +13,10 @@ class TouristSite extends Model
     use HasFactory;
 
     protected $fillable = [
+        'street_en',
+        'street_ar',
+        'city_en',
+        'city_ar',
         'title_en',
         'title_ar',
         'rating',

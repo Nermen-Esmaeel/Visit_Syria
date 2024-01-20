@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('tourist_sites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+            $table->string('street_en');
+            $table->string('street_ar');
+            $table->string('city_en');
+            $table->string('city_ar');
             $table->string('photo_cover');
             $table->string('photo_logo');
             $table->string('title_en');
