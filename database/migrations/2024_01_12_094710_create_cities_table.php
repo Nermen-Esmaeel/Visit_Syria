@@ -31,7 +31,7 @@ return new class extends Migration
             'As-Suwayda'
             ]);
 
-            $table->enum('governorates-AR',
+            $table->enum('governorates_AR',
             [
                 'حلب',
                 'دمشق',

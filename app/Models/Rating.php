@@ -18,6 +18,7 @@ class Rating extends Model
         'name_en',
         'name_ar',
         'value',
+        'rating_count',
 
 
     ];

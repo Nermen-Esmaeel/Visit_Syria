@@ -18,12 +18,9 @@ return new class extends Migration
             $table->string('photo_logo');
             $table->string('title_en');
             $table->string('title_ar');
-            $table->string('rating');
+            $table->string('Hotel_rating');
             $table->text('description_en');
             $table->text('description_ar');
-            $table->enum('rooms_en', ['For one', 'For tow people','Suite']);
-            $table->enum('rooms_ar', ['لشخص واحد', 'لشخصين','جناح عائلي']);
-            $table->enum('discounts', ['20%', '40%','50%']);
             $table->integer('phone number');
             $table->string('email')->nullable();
             $table->string('facebook')->nullable();

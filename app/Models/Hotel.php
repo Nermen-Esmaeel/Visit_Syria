@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hotel extends Model
 {
-    use HasFactory;
+    use HasFactory,Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +34,16 @@ class Hotel extends Model
         'website',
 
     ];
+
+    public function toSearchableArray()
+{
+    return [
+        
+        'title_en' => $this->name_en,
+        'title_ar' => $this->name_ar,
+        
+    ];
+}
 
     /**
      * Get the businessOwner that owns the Hotel
@@ -103,14 +114,15 @@ class Hotel extends Model
     }
 
     /**
-     * Get the services associated with the Hotel
+     * Get all of the services for the Hotel
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function services(): HasOne
+    public function services(): HasMany
     {
-        return $this->hasOne(Service::class);
+        return $this->hasMany(Service::class);
     }
+
 
     /**
      * Get all of the comments for the Hotel
@@ -120,5 +132,14 @@ class Hotel extends Model
     public function offers(): HasMany
     {
         return $this->hasMany(Offer::class, 'hotel_id', 'id');
+    }
+    /**
+     * Get all of the rooms for the Hotel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(Room::class);
     }
 }

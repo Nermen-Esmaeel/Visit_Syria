@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('hotel_id')->constrained('hotels')->cascadeOnDelete();
             $table->text('content_en');
             $table->text('content_ar');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Restaurant extends Model
 {
-    use HasFactory;
+    use HasFactory,Searchable;
 
 
     /**
@@ -34,6 +36,16 @@ class Restaurant extends Model
         'website',
 
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            
+            'title_en' => $this->name_en,
+            'title_ar' => $this->name_ar,
+            
+        ];
+    }
 
 
     /**
@@ -103,15 +115,18 @@ class Restaurant extends Model
         return $this->hasMany(Rating::class);
     }
 
+
     /**
-     * Get the services associated with the Hotel
+     * Get all of the services for the Restaurant
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function services(): HasOne
+    public function services(): HasMany
     {
-        return $this->hasOne(Service::class);
+        return $this->hasMany(Service::class);
     }
+
+   
 
 
 }

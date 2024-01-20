@@ -11,6 +11,17 @@ class Favorite extends Model
 {
     use HasFactory;
 
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'id',
+    
+    ];
+
+
     /**
      * Get the user that owns the Favorite
      *
@@ -21,9 +32,26 @@ class Favorite extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function favoritable(): MorphTo 
+    public function favoritable(): MorphTo
     {
         return $this->morphTo();
 
+    }
+    
+
+
+    public function toggle()
+    {           dd($this);
+
+        if ($this->exists()) {
+           dd($this->exists());
+            //$this->delete();
+           // return false;
+        } else {
+            //$this->save();
+            //return true;
+            dd(false);
+
+        }
     }
 }

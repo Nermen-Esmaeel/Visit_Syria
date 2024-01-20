@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('photo_logo');
             $table->string('title_en');
             $table->string('title_ar');
-            $table->string('rating');
+            $table->string('Site_rating');
             $table->text('description_en');
             $table->text('description_ar');
             $table->string('email')->nullable();
