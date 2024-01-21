@@ -14,10 +14,10 @@ class HotelSeeder extends Seeder
     public function run(): void
     {
         $city_id = [8 ,8,8];
-        $street_en = ['Ghasan-Harfosh ', 'Doar-Haron', 'Al-Ziraa'];
-        $street_ar = ['غسان حرفوش', 'دوار هارون', 'الزراعة'];
-        $city_en = ['lattakia', 'lattakia', 'lattakia'];
-        $city_ar = ['اللاذقية', 'اللاذقية','اللاذقية'];
+        $street_en = ['Bab Toma main Road', 'Blue Beach Road', 'Umayyad Square'];
+        $street_ar = ['طريق باب توما الرئيسي', 'الشاطئ الأزرق', 'ساحة الامويين'];
+        $city_en = ['Damascus', 'lattakia', 'Damascus'];
+        $city_ar = ['دمشق', 'اللاذقية','دمشق'];
         $photo_cover = [
         'hotel_images/cover_images_16974493221.png',
         'hotel_images/cover_images_16974493221.png',
@@ -28,26 +28,26 @@ class HotelSeeder extends Seeder
             'hotel_images/logo_images_16974493221.png',
             'hotel_images/logo_images_16974493221.png'
         ];
-        $title_en = ['mermar', 'Haron' ,'Zanobia'];
-        $title_ar = ['ميرامار', 'هارون' ,'زنوبيا'];
+        $title_en = ['Beit Alwali Hotel', 'Blue Beach' ,'Dama Rose'];
+        $title_ar = ['بيت الوالي', 'بلو بيتش' ,'داماروز'];
         $Hotel_rating = [4,4,3];
         $description_en = [
-            'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit',
-            'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit',
-            'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit',
+            'It is distinguished by its luxurious interior design and its unique location near tourist and historical landmarks. It consists of 40 rooms and suites',
+            'Characterized by its pristine sand and clear blue waters, it is considered one of the most world-famous areas.It has 300 rooms and suites',
+            'It features 150 rooms and suites, as well as a variety of restaurants, cafes and leisure facilities.',
         ];
         $description_ar = [
-            'إنشاء وتصميم نظام يعمل كوسيط بين الزبون والمطعم لتوفير خدمة طلب الطعام من خلاله بسهولة ودون تكاليف ,  يستطيع الزبون حجز طاولة في المطعم عبر الانترنت حيث يقوم الزبون بتسجيل دخوله بشكل آمن إلى النظام  يستطيع الزبون طلب ',
-            'إنشاء وتصميم نظام يعمل كوسيط بين الزبون والمطعم لتوفير خدمة طلب الطعام من خلاله بسهولة ودون تكاليف ,  يستطيع الزبون حجز طاولة في المطعم عبر الانترنت حيث يقوم الزبون بتسجيل دخوله بشكل آمن إلى النظام  يستطيع الزبون طلب ',
-            'إنشاء وتصميم نظام يعمل كوسيط بين الزبون والمطعم لتوفير خدمة طلب الطعام من خلاله بسهولة ودون تكاليف ,  يستطيع الزبون حجز طاولة في المطعم عبر الانترنت حيث يقوم الزبون بتسجيل دخوله بشكل آمن إلى النظام  يستطيع الزبون طلب ',
+            'يتميز بتصميمه الداخلي الفخم وموقعه المميز بالقرب من المعالم السياحية والتاريخية.ويصم 40 غرفة وجناحاً',
+            'ييتميز برماله النقية ومياهه الزرقاء الصافية، ويُعتبر أحد أكثر المناطق المشهورة عالميا.ويضم 300 غرفة وجناحاً ',
+            ' يضم 150غرفة وجناحًا، بالإضافة إلى مجموعة متنوعة من المطاعم والمقاهي والمرافق الترفيهية. ',
         ];
         $phone_number = ['+(963) 0987654321', '+(963) 0987654321', '+(963) 0987654321'];
-        $email = ['meramar@gmail.com', 'haron@gmail.com', 'zanobia@gmail.com'];
-        $facebook = ['Mermar_Hotel@outlook.com', 'Haron_Hotel@outlook.com', 'Zanobia_Hotel@outlook.com'];
-        $instagram = ['Mermar_Hotel@outlook.com', 'Haron_Hotel@outlook.com', 'Zanobia_Hotel@outlook.com'];
-        $youtube = ['Mermar_Hotel@outlook.com', 'Haron_Hotel@outlook.com', 'Zanobia_Hotel@outlook.com'];
-        $twitter = ['Mermar_Hotel@outlook.com', 'Haron_Hotel@outlook.com', 'Zanobia_Hotel@outlook.com'];
-        $website = ['www.meramarhotel.com', 'www.haronhotel.com', 'www.zanobiahotel.com'];
+        $email = ['Beit_Alwali_Hotel@gmail.com', 'bluebeach@gmail.com', 'DamaRoze@gmail.com'];
+        $facebook = ['Beit_Alwali_Hotel@outlook.com', 'bluebeach@outlook.com', 'DamaRoze@outlook.com'];
+        $instagram = ['Beit_Alwali_Hotel@outlook.com', 'bluebeach@outlook.com', 'DamaRoze@outlook.com'];
+        $youtube = ['Beit_Alwali_Hotel@outlook.com', 'bluebeach@outlook.com', 'DamaRoze@outlook.com'];
+        $twitter = ['Beit_Alwali_Hotel@outlook.com', 'bluebeach@outlook.com', 'DamaRoze@outlook.com'];
+        $website = ['www.Beit_Alwali_Hotel.com', 'www.bluebeach.com', 'www.DamaRoze.com'];
         $working_time = ['16/24', '16/24', '24/24'];
 
         for($i=0; $i<3;$i++) {

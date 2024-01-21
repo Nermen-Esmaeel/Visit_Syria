@@ -31,12 +31,12 @@ class ExploreController extends Controller
         $data = $request->validate([
             'content' => "string | required"
         ]);
-        
+
         $hotels = Hotel::search($request->input('content'))->get(2);
         $restaurants = Restaurant::search($request->input('content'))->get(2);
-        
+
         if(count($hotels)==0 && count($restaurants)==0){
-            
+
             return ApiResponse::sendResponse(200,'There is no record matches !',[]);
         }
         else{
@@ -46,7 +46,7 @@ class ExploreController extends Controller
                 'Hotels' => $hotels,
                 'Restaurants' => $restaurants
             ];
-          
+
             return ApiResponse::sendResponse(200,'ok',$results);
         }
 
@@ -56,13 +56,13 @@ class ExploreController extends Controller
     public function Rating(Request $request){
 
         if ($request->header('lan')=="en") {
-          
+
             $request->validate([
                 'Service_name'=>'required|exists:ratings,name_en',
                 'Rating_value'=>'required|between:0,5',
 
             ]);
-           
+
         }
 
         elseif($request->header('lan')=="ar")
@@ -83,9 +83,9 @@ class ExploreController extends Controller
             'value' =>$new_service_rating,
             'rating_count' =>$rating_count,
         ]);
-        
+
         return ApiResponse::sendResponse(200,'Your rating has been saved !',[]);
-        
+
 
     }
 
@@ -93,32 +93,31 @@ class ExploreController extends Controller
     public function HotelsIndex(){
 
         $hotels = Hotel::paginate(9);
-        
+
         if (count($hotels)>0) {
 
             $hotels = HotelResource::collection($hotels);
             return ApiResponse::sendResponse(200,'ok',$hotels);
-           
+
         } else {
 
             return ApiResponse::sendResponse(200,'There is no hotels available',[]);
 
         }
-        
+
     }
 
-    public function ShowHotel(Request $request){
-        
-        $hotel_id = $request->input('hotel_id');
-        $hotel = Hotel::find($hotel_id);
+    public function ShowHotel(String $id){
+
+        $hotel = Hotel::find($id);
 
         if ($hotel) {
-            
+
             $hotel = new HotelResource($hotel);
 
             return ApiResponse::sendResponse(200,'ok',$hotel);
-           
-        } 
+
+        }
         else {
 
             return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
@@ -132,24 +131,24 @@ class ExploreController extends Controller
         $hotel_id = $request->input('hotel_id');
 
         $hotel = Hotel::find($hotel_id);
-       
+
         $hotel['user_id'] = $request->user()->id;
-        
+
 
         if ($hotel) {
-            
+
             $hotel = $this->ToggleFavorites($hotel);
 
             if($hotel->favorites()->exists()){
 
                 $hotel = new HotelResource($hotel);
-                
+
                 return ApiResponse::sendResponse(201,'Hotel added to favorites',$hotel);
             }
-           
+
             return ApiResponse::sendResponse(200,'Hotel deleted from favorites',[]);
-           
-        } 
+
+        }
         else {
 
             return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
@@ -166,32 +165,30 @@ class ExploreController extends Controller
         $hotel_id = $request->input('hotel_id');
 
         $hotel = Hotel::find($hotel_id);
-        
+
         if ($hotel) {
 
             $hotel['user_id'] =  $request->user()->id;
             $hotel['content'] = $request->content;
-            
+
             $hotel = $this->AddComment($hotel);
-            return ApiResponse::sendResponse(201,'Comment saved',[]); 
-        } 
-        
+            return ApiResponse::sendResponse(201,'Comment saved',[]);
+        }
+
     }
     #########################/Restaurant SECTION /#########################
 
-    public function ShowRestaurant(Request $request){
+    public function ShowRestaurant(String $id){
 
-        $restaurant_id = $request->input('restaurant_id');
-
-        $restaurant = Restaurant::find($restaurant_id);
+        $restaurant = Restaurant::find($id);
 
         if ($restaurant) {
-            
+
             $restaurant = new RestaurantResource($restaurant);
 
             return ApiResponse::sendResponse(200,'ok',$restaurant);
-           
-        } 
+
+        }
         else {
 
             return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
@@ -203,18 +200,18 @@ class ExploreController extends Controller
     public function RestaurantsIndex(){
 
         $restaurants = Restaurant::paginate(9);
-        
+
         if (count($restaurants)>0) {
 
             $restaurants = RestaurantResource::collection($restaurants);
             return ApiResponse::sendResponse(200,'ok',$restaurants);
-           
+
         } else {
 
             return ApiResponse::sendResponse(200,'There is no restaurants available',[]);
 
         }
-        
+
     }
 
     public function iLikeThisRestaurant(Request $request){
@@ -222,12 +219,12 @@ class ExploreController extends Controller
         $restaurant_id = $request->input('restaurant_id');
 
         $restaurant = Restaurant::find($restaurant_id);
-       
+
         $restaurant['user_id'] =  $request->user()->id;
-        
+
 
         if ($restaurant) {
-            
+
             $restaurant = $this->ToggleFavorites($restaurant);
 
             if($restaurant->favorites()->exists()){
@@ -236,10 +233,10 @@ class ExploreController extends Controller
 
                 return ApiResponse::sendResponse(201,'Restaurant added to favorites',$restaurant);
             }
-           
+
             return ApiResponse::sendResponse(200,'Restaurant deleted from favorites',[]);
-           
-        } 
+
+        }
         else {
 
             return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
@@ -249,53 +246,53 @@ class ExploreController extends Controller
     }
 
     public function AddCommentToRestaurant(CommentRequest $request)
-    { 
+    {
         $data = $request->validated();
         $restaurant_id = $request->input('restaurant_id');
 
-        $restaurant = Restaurant::find($restaurant_id); 
+        $restaurant = Restaurant::find($restaurant_id);
         if ($restaurant) {
 
             $restaurant['user_id'] =  $request->user()->id;
             $restaurant['content'] =  $data['content'];
             $restaurant = $this->AddComment($restaurant);
             return ApiResponse::sendResponse(201,'Comment saved',[]);
-             
-        } 
+
+        }
     }
     #########################/TouristSite SECTION /#########################
 
     public function SitesIndex(){
 
         $sites = TouristSite::paginate(9);
-        
+
         if (count($sites)>0) {
 
             $sites = Tourist_sitesResource::collection($sites);
             return ApiResponse::sendResponse(200,'ok',$sites);
-           
+
         } else {
 
             return ApiResponse::sendResponse(200,'There is no sites available',[]);
 
         }
-        
+
     }
 
 
-    public function ShowSite(Request $request){
+    public function ShowSite(String $id){
 
-        $site_id = $request->input('site_id');
+       // $site_id = $request->input('site_id');
 
-        $site = TouristSite::find($site_id);
+        $site = TouristSite::find($id);
 
         if ($site) {
 
             $site = new Tourist_sitesResource($site);
 
             return ApiResponse::sendResponse(200,'ok',$site);
-           
-        } 
+
+        }
         else {
 
             return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
@@ -310,12 +307,12 @@ class ExploreController extends Controller
         $site_id = $request->input('site_id');
 
         $site = TouristSite::find($site_id);
-        
+
         $site['user_id'] =  $request->user()->id;
-        
+
 
         if ($site) {
-            
+
             $site = $this->ToggleFavorites($site);
 
             if($site->favorites()->exists()){
@@ -324,10 +321,10 @@ class ExploreController extends Controller
 
                 return ApiResponse::sendResponse(201,'Site added to favorites',$site);
             }
-           
+
             return ApiResponse::sendResponse(200,'Site deleted from favorites',[]);
-           
-        } 
+
+        }
         else {
 
             return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
@@ -336,25 +333,25 @@ class ExploreController extends Controller
 
     }
 
-    
+
     public function AddCommentToSite(CommentRequest $request)
 
     {        $data = $request->validated();
-        
+
         $site_id = $request->input('site_id');
 
-        $site = TouristSite::find($site_id); 
+        $site = TouristSite::find($site_id);
         if ($site) {
 
             $site['user_id'] =  $request->user()->id;
             $site['content'] = $request->content;
             $site = $this->AddComment($site);
             return ApiResponse::sendResponse(201,'Comment saved',[]);
-             
-        } 
+
+        }
     }
 
-    
 
-    
+
+
 }

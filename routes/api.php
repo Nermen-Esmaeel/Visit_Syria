@@ -21,9 +21,9 @@ use App\Http\Controllers\Api\Explore\HotelController;
 
 
     Route::post('/register', [AuthController::class, 'register']);
-    
 
-   
+
+
 
 
 Route::prefix('Explore')->controller(ExploreController::class)->group(function(){
@@ -31,9 +31,9 @@ Route::prefix('Explore')->controller(ExploreController::class)->group(function()
     Route::get('/Hotels','HotelsIndex');
     Route::get('/Restaurants','RestaurantsIndex');
     Route::get('/Tourist_Sites','SitesIndex');
-    Route::post('/ShowSite','ShowSite');
-    Route::post('/ShowHotel','ShowHotel');
-    Route::post('/ShowRestaurant','ShowRestaurant');
+    Route::get('/ShowSite/{id}','ShowSite');
+    Route::get('/ShowHotel/{id}','ShowHotel');
+    Route::get('/ShowRestaurant/{id}','ShowRestaurant');
     Route::post('/Search','Search');
 
     Route::middleware('auth:sanctum')->group(function(){
@@ -47,7 +47,7 @@ Route::prefix('Explore')->controller(ExploreController::class)->group(function()
 
         Route::post('/Rating','Rating');
     });
-    
+
 });
 
 

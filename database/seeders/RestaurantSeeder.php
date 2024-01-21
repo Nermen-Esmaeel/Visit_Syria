@@ -13,11 +13,11 @@ class RestaurantSeeder extends Seeder
      */
     public function run(): void
     {
-        $city_id = [8 ,8,1];
+        $city_id = [2 ,8,1];
         $street_en = ['Ghasan-Harfosh ', 'Doar-Haron', 'Al-Ziraa'];
         $street_ar = ['دوار الشاطئ', 'دوار هارون', 'سيف الدولة'];
-        $city_en = ['lattakia', 'lattakia', 'Aleppo'];
-        $city_ar = ['اللاذقية', 'اللاذقية','حلب'];
+        $city_en = ['Damascus', 'lattakia', 'Aleppo'];
+        $city_ar = ['دمشق', 'اللاذقية','حلب'];
         $photo_cover = [
         'restaurant_images/cover_images_16974493221.png',
         'restaurant_images/cover_images_16974493222.png',
@@ -28,26 +28,26 @@ class RestaurantSeeder extends Seeder
             'restaurant_images/logo_images_16974493222.png',
             'restaurant_images/logo_images_16974493223.png'
         ];
-        $title_en = ['Beroea', 'Ninar' ,'Karma'];
-        $title_ar = ['بيرويا', 'نينار' ,'كارما'];
+        $title_en = ['Shams rose', 'Beroea' ,'Karma'];
+        $title_ar = ['وردة الشام', 'بيرويا' ,'كارما'];
         $Restaurant_rating = [4,4,3];
         $description_en = [
+            'It is a restaurant known for its Middle Eastern dishes made with fresh vegetables and cooked with love',
             'The Beroea Restaurant is located direct facing the side of the famous Aleppo Citadel',
-            'The Beroea Restaurant is located direct facing the side of the famous Aleppo Citadel',
-            'The Beroea Restaurant is located direct facing the side of the famous Aleppo Citadel',
+            'It is a restaurant known for its Middle Eastern dishes made with fresh vegetables and cooked with love',
         ];
         $description_ar = [
-            'إنشاء وتصميم نظام يعمل كوسيط بين الزبون والمطعم لتوفير خدمة طلب الطعام من خلاله بسهولة ودون تكاليف ,  يستطيع الزبون حجز طاولة في المطعم عبر الانترنت حيث يقوم الزبون بتسجيل دخوله بشكل آمن إلى النظام  يستطيع الزبون طلب ',
-            'إنشاء وتصميم نظام يعمل كوسيط بين الزبون والمطعم لتوفير خدمة طلب الطعام من خلاله بسهولة ودون تكاليف ,  يستطيع الزبون حجز طاولة في المطعم عبر الانترنت حيث يقوم الزبون بتسجيل دخوله بشكل آمن إلى النظام  يستطيع الزبون طلب ',
-            'إنشاء وتصميم نظام يعمل كوسيط بين الزبون والمطعم لتوفير خدمة طلب الطعام من خلاله بسهولة ودون تكاليف ,  يستطيع الزبون حجز طاولة في المطعم عبر الانترنت حيث يقوم الزبون بتسجيل دخوله بشكل آمن إلى النظام  يستطيع الزبون طلب ',
+            'إنه مطعم معروف بأطباقه الشرق أوسطية المصنوعة من الخضار الطازجة والمطبوخة بكل حب ',
+            'إنه مطعم معروف بأطباقه الشرق أوسطية المصنوعة من الخضار الطازجة والمطبوخة بكل حب ',
+            ' إنه مطعم معروف بأطباقه الشرق أوسطية المصنوعة من الخضار الطازجة والمطبوخة بكل حب ',
         ];
         $phone_number = ['+(963) 0987654321', '+(963) 0987654321', '+(963) 0987654321'];
-        $email = ['Beroea@gmail.com', 'Ninar@gmail.com', 'Karma@gmail.com'];
-        $facebook = ['Beroea_resturant@outlook.com', 'Ninar_resturant@outlook.com', 'Karma_resturant@outlook.com'];
-        $instagram = ['Beroea_resturant@outlook.com', 'Ninar_resturant@outlook.com', 'Karma_resturant@outlook.com'];
-        $youtube = ['Beroea_resturant@outlook.com', 'Ninar_resturant@outlook.com', 'Karma_resturant@outlook.com'];
-        $twitter = ['Beroea_resturant@outlook.com', 'Ninar_resturant@outlook.com', 'Karma_resturant@outlook.com'];
-        $website = ['www.Beroea_resturant.com', 'www.Ninar_resturant.com', 'www.Karma_resturant.com'];
+        $email = ['Shams_rose@gmail.com', 'Beroea@gmail.com', 'Karma@gmail.com'];
+        $facebook = ['Shams_rose@outlook.com', 'Beroea_resturant@outlook.com', 'Karma_resturant@outlook.com'];
+        $instagram = ['Shams_rose@outlook.com', 'Beroea_resturant@outlook.com', 'Karma_resturant@outlook.com'];
+        $youtube = ['Shams_rose@outlook.com', 'Beroea_resturant@outlook.com', 'Karma_resturant@outlook.com'];
+        $twitter = ['Shams_rose@outlook.com', 'Beroea_resturant@outlook.com', 'Karma_resturant@outlook.com'];
+        $website = ['www.Shams_rose.com', 'www.Beroea_resturant.com', 'www.Karma_resturant.com'];
         $working_time = ['24/24', '16/24', '24/24'];
 
         for($i=0; $i<3;$i++) {

@@ -15,10 +15,8 @@ class SiteSeeder extends Seeder
     {
 
             $city_id = [2 ,1,6];
-            $street_en = ['Ghasan-Harfosh ', 'Doar-Haron', 'Al-Ziraa'];
-            $street_ar = ['دوار الشاطئ', 'دوار هارون', 'سيف الدولة'];
-            $city_en = ['Bosra Al-Sham', 'Aleppo', 'Homs'];
-            $city_ar = ['بصرى الشام', 'حلب','حمص'];
+            $city_en = ['Damascus', 'Aleppo', 'Damascus'];
+            $city_ar = [' دمشق', 'حلب','دمشق'];
             $photo_cover = [
                 'site_images/cover_images_16974493221.png',
                 'site_images/cover_images_16974493222.png',
@@ -29,11 +27,11 @@ class SiteSeeder extends Seeder
                 'site_images/logo_images_16974493222.png',
                 'site_images/logo_images_16974493223.png'
             ];
-            $title_en = ['Busr-as-Sam', 'Aleppo Cetadel' ,'Palmyra'];
-            $title_ar = ['مدرج بصرى', 'قلعة حلب' ,'مملكة تدمر'];
+            $title_en = ['Mount Qassioun', 'Aleppo Cetadel' ,'Palmyra'];
+            $title_ar = ['جبل قاسيون', 'قلعة حلب' ,'مملكة تدمر'];
             $Site_rating = [4,4,3];
             $description_en = [
-                'The Beroea Restaurant is located direct facing the side of the famous Aleppo Citadel',
+                'It is distinguished by its luxurious interior design and its unique location near tourist and historical landmarks. It consists of 40 rooms and suites',
                 'Aleppo Citadel is a fortified palace dating back to the Middle Ages. Aleppo Citadel is considered one of the oldest and largest castles',
                 'The Kingdom of Palmyra, whose capital is located in the city of Palmyra, was one of the most important ancient kingdoms that flourished in particular during the reign of its queen Zenobia.',
             ];
@@ -48,8 +46,6 @@ class SiteSeeder extends Seeder
             for($i=0; $i<3;$i++) {
                 $site=new TouristSite();
                 $site->city_id = $city_id[$i];
-                $site->street_en =  $street_en[$i];
-                $site->street_ar =  $street_ar[$i];
                 $site->city_en =  $city_en[$i];
                 $site->city_ar =  $city_ar[$i];
                 $site->photo_cover = $photo_cover[$i];
