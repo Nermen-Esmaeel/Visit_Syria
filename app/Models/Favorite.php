@@ -18,7 +18,7 @@ class Favorite extends Model
      */
     protected $fillable = [
         'id',
-    
+
     ];
 
 
@@ -37,7 +37,7 @@ class Favorite extends Model
         return $this->morphTo();
 
     }
-    
+
 
 
     public function toggle()

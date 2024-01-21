@@ -20,14 +20,14 @@ class RestaurantResource extends JsonResource
             return [
 
                 'City' =>new CityResource($this->city),
-                'Services_rating'=>RatingResource::collection($this->rating),
-                'Services' =>ServicesResource::collection($this->services),
+                'Services_rating'=>RatingResource::collection($this->whenLoaded('rating')),
+                'Services' =>ServicesResource::collection($this->whenLoaded('services')),
                 'Cover_path' =>$this->photo_cover,
                 'Logo_path' =>$this->photo_logo,
                 'Title' =>$this->title_en,
                 'Restaurant_rating' =>$this->Restaurant_rating,
                 'Description' => $this->description_en,
-                'Photos' =>PhotosResource::collection($this->photos),
+                'Photos' =>PhotosResource::collection($this->whenLoaded('photos')),
                 'street_en' => $this->street_en,
                 'city_en'   => $this->city_en,
                 'phone number' => $this->phoneNumber,
@@ -39,7 +39,7 @@ class RestaurantResource extends JsonResource
                 'Website' => $this->website,
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
-                'Comments'  => CommentsResource::collection($this->comments),
+                'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
 
 
             ];
@@ -48,14 +48,14 @@ class RestaurantResource extends JsonResource
             return [
 
                 'City' =>new CityResource($this->city),
-                'Services_rating'=>RatingResource::collection($this->rating),
-                'Services' => ServicesResource::collection($this->services),
+                'Services_rating'=>RatingResource::collection($this->whenLoaded('rating')),
+                'Services' => ServicesResource::collection($this->whenLoaded('services')),
                 'Cover_path' =>$this->photo_cover,
                 'Logo_path' =>$this->photo_logo,
                 'Title' =>$this->title_ar,
                 'Restaurant_rating' =>$this->Restaurant_rating,
                 'Description' => $this->description_ar,
-                'Photos' =>PhotosResource::collection($this->photos),
+                'Photos' =>PhotosResource::collection($this->whenLoaded('photos')),
                 'street_ar' => $this->street_ar,
                 'city_ar'   => $this->city_ar,
                 'phone number' => $this->phoneNumber,
@@ -67,7 +67,7 @@ class RestaurantResource extends JsonResource
                 'Website' => $this->website,
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
-                'Comments'  => CommentsResource::collection($this->comments),
+                'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
 
 
             ];

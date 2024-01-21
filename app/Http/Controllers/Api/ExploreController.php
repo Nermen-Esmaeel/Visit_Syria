@@ -2,27 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Hotel;
-use App\Traits\Favorites;
-use App\Models\Restaurant;
-use App\Models\TouristSite;
+use App\Models\{Hotel,Rating,Restaurant,TouristSite};
+use App\Traits\{CommentsTrait,FavoritesTrait};
 use App\Helpers\ApiResponse;
 use Illuminate\Http\Request;
-use App\Traits\CommentsTrait;
-use App\Traits\FavoritesTrait;
 use Database\Seeders\HotelSeeder;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RatingRequest;
-use App\Http\Requests\CommentRequest;
+use App\Http\Requests\{RatingRequest,CommentRequest};
 use function PHPUnit\Framework\isEmpty;
-use App\Http\Resources\Api\HotelResource;
+use App\Http\Resources\Api\{HotelResource,RestaurantResource,Tourist_sitesResource};
 
-use App\Http\Resources\Api\RestaurantResource;
-use App\Http\Resources\Api\Tourist_sitesResource;
-use App\Models\Rating;
+
 
 class ExploreController extends Controller
-{   use FavoritesTrait,CommentsTrait;
+{
+    use FavoritesTrait,CommentsTrait;
+
     #########################/Search SECTION /#########################
 
 
@@ -94,6 +89,7 @@ class ExploreController extends Controller
 
         $hotels = Hotel::paginate(9);
 
+
         if (count($hotels)>0) {
 
             $hotels = HotelResource::collection($hotels);
@@ -113,14 +109,15 @@ class ExploreController extends Controller
 
         if ($hotel) {
 
-            $hotel = new HotelResource($hotel);
+            $hotel = Hotel::query()->where('id', '=', $id)->with(['rating', 'services' ,'photos','rooms','offers','comments'])->first();
 
-            return ApiResponse::sendResponse(200,'ok',$hotel);
+
+            return ApiResponse::sendResponse(200,'ok',new HotelResource($hotel));
 
         }
         else {
 
-            return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
 
@@ -132,10 +129,11 @@ class ExploreController extends Controller
 
         $hotel = Hotel::find($hotel_id);
 
-        $hotel['user_id'] = $request->user()->id;
 
 
         if ($hotel) {
+
+            $hotel['user_id'] = $request->user()->id;
 
             $hotel = $this->ToggleFavorites($hotel);
 
@@ -151,7 +149,7 @@ class ExploreController extends Controller
         }
         else {
 
-            return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
 
@@ -161,7 +159,8 @@ class ExploreController extends Controller
 
     public function AddCommentToHotel(CommentRequest $request)
 
-    {        $data = $request->validated();
+    {
+        $data = $request->validated();
         $hotel_id = $request->input('hotel_id');
 
         $hotel = Hotel::find($hotel_id);
@@ -173,6 +172,10 @@ class ExploreController extends Controller
 
             $hotel = $this->AddComment($hotel);
             return ApiResponse::sendResponse(201,'Comment saved',[]);
+        }else {
+
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
+
         }
 
     }
@@ -184,14 +187,14 @@ class ExploreController extends Controller
 
         if ($restaurant) {
 
-            $restaurant = new RestaurantResource($restaurant);
+            $restaurant = Restaurant::query()->where('id', '=', $id)->with(['rating', 'services' ,'photos','comments'])->first();
 
-            return ApiResponse::sendResponse(200,'ok',$restaurant);
+            return ApiResponse::sendResponse(200,'ok',new RestaurantResource($restaurant));
 
         }
         else {
 
-            return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
 
@@ -220,10 +223,10 @@ class ExploreController extends Controller
 
         $restaurant = Restaurant::find($restaurant_id);
 
-        $restaurant['user_id'] =  $request->user()->id;
-
 
         if ($restaurant) {
+
+            $restaurant['user_id'] =  $request->user()->id;
 
             $restaurant = $this->ToggleFavorites($restaurant);
 
@@ -239,7 +242,7 @@ class ExploreController extends Controller
         }
         else {
 
-            return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
 
@@ -257,6 +260,11 @@ class ExploreController extends Controller
             $restaurant['content'] =  $data['content'];
             $restaurant = $this->AddComment($restaurant);
             return ApiResponse::sendResponse(201,'Comment saved',[]);
+
+        }
+        else {
+
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
     }
@@ -288,14 +296,14 @@ class ExploreController extends Controller
 
         if ($site) {
 
-            $site = new Tourist_sitesResource($site);
+            $site = TouristSite::query()->where('id', '=', $id)->with(['photos','comments'])->first();
 
-            return ApiResponse::sendResponse(200,'ok',$site);
+            return ApiResponse::sendResponse(200,'ok',new Tourist_sitesResource($site));
 
         }
         else {
 
-            return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
 
@@ -308,10 +316,9 @@ class ExploreController extends Controller
 
         $site = TouristSite::find($site_id);
 
-        $site['user_id'] =  $request->user()->id;
-
-
         if ($site) {
+
+            $site['user_id'] =  $request->user()->id;
 
             $site = $this->ToggleFavorites($site);
 
@@ -327,7 +334,7 @@ class ExploreController extends Controller
         }
         else {
 
-            return ApiResponse::sendResponse(200,'There is no record matches this ID ',[]);
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
 
@@ -347,6 +354,10 @@ class ExploreController extends Controller
             $site['content'] = $request->content;
             $site = $this->AddComment($site);
             return ApiResponse::sendResponse(201,'Comment saved',[]);
+
+        }else {
+
+            return ApiResponse::sendResponse(404,'There is no record matches this ID ',[]);
 
         }
     }

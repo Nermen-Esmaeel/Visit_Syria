@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('postal')->nullable();
             $table->text('about')->nullable();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

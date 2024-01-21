@@ -19,6 +19,8 @@ class Hotel extends Model
      *
      * @var array<int, string>
      */
+
+
     protected $fillable = [
         'street_en',
         'street_ar',
@@ -67,15 +69,6 @@ class Hotel extends Model
         return $this->morphMany(Favorite::class , 'favoritable') ;
     }
 
-    /**
-     * Get all of the locations for the Hotel
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locations(): HasMany
-    {
-        return $this->hasMany(Location::class);
-    }
 
     /**
      * Get all of the reservations for the Hotel
