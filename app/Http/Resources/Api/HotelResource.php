@@ -19,7 +19,7 @@ class HotelResource extends JsonResource
         if ($request->header('lan')=="en") {
 
             return [
-
+                'Hotel_id' => $this->id,
                 'City' =>new CityResource($this->city),
                 'Services_Rating' =>RatingResource::collection($this->whenLoaded('rating')),
                 'Services' =>ServicesResource::collection($this->whenLoaded('services')),
@@ -49,7 +49,7 @@ class HotelResource extends JsonResource
 
         } elseif ($request->header('lan')=="ar"){
             return [
-
+                'Hotel_id' => $this->id,
                 'City' =>new CityResource($this->city),
                 'Services_Rating' => RatingResource::collection($this->whenLoaded('rating')),
                 'Services' => ServicesResource::collection($this->whenLoaded('services')),

@@ -2,7 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Photo;
+use App\Models\Rating;
+use App\Models\Comment;
+use App\Models\Service;
+use App\Models\Favorite;
+use App\Models\Reservation;
+use App\Models\BusinessOwner;
 use Laravel\Scout\Searchable;
+use App\Models\Recommendation;
+use phpDocumentor\Reflection\Location;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -130,6 +139,7 @@ class Restaurant extends Model
         return $this->hasMany(Service::class);
     }
 
+    
 
 
 

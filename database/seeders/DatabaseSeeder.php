@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             RatingSeeder::class,
             RoomSeeder::class,
             OfferSeeder::class,
+            LandingPageSeeder::class,
 
         ]);
     }

@@ -18,7 +18,7 @@ class RestaurantResource extends JsonResource
         if ($request->header('lan')=="en") {
 
             return [
-
+                'Restaurant_id' =>$this->id,
                 'City' =>new CityResource($this->city),
                 'Services_rating'=>RatingResource::collection($this->whenLoaded('rating')),
                 'Services' =>ServicesResource::collection($this->whenLoaded('services')),
@@ -46,7 +46,7 @@ class RestaurantResource extends JsonResource
 
         } elseif ($request->header('lan')=="ar"){
             return [
-
+                'Restaurant_id' =>$this->id,
                 'City' =>new CityResource($this->city),
                 'Services_rating'=>RatingResource::collection($this->whenLoaded('rating')),
                 'Services' => ServicesResource::collection($this->whenLoaded('services')),
