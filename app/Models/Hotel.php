@@ -22,6 +22,8 @@ class Hotel extends Model
 
 
     protected $fillable = [
+        'photo_cover',
+        'photo_logo',
         'street_en',
         'street_ar',
         'city_en',
@@ -31,7 +33,7 @@ class Hotel extends Model
         'rating',
         'description_en',
         'description_ar',
-        'phone number',
+        'phone_number',
         'email',
         'facebook',
         'instagram',
