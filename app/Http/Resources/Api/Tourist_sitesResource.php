@@ -18,7 +18,7 @@ class Tourist_sitesResource extends JsonResource
 
         if(($request->header('lan')=="en")){
             return [
-
+                'Site_id' =>$this->id,
                 'City' =>new CityResource($this->city),
                 'Cover_path' =>$this->photo_cover,
                 'Title' =>$this->title_en,
@@ -37,7 +37,7 @@ class Tourist_sitesResource extends JsonResource
         elseif(($request->header('lan')=="ar")){
 
             return [
-
+                'Site_id' =>$this->id,
                 'City' =>new CityResource($this->city),
                 'Cover_path' =>$this->photo_cover,
                 'Title' =>$this->title_ar,

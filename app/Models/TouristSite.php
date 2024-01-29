@@ -2,6 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Photo;
+use App\Models\Comment;
+use App\Models\Favorite;
+use App\Models\Reservation;
+use App\Models\BusinessOwner;
+use phpDocumentor\Reflection\Location;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -81,5 +87,7 @@ class TouristSite extends Model
     {
         return $this->belongsTo(city::class, 'city_id');
     }
+
+
 
 }

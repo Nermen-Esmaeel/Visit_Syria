@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('city_en');
             $table->string('city_ar');
             $table->enum('category', [
-                'Archaeologica',
+                'Archaeologic',
                 'Natural',
                 ])->nullable();
             $table->string('photo_cover');

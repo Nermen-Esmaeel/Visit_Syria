@@ -22,28 +22,29 @@ return new class extends Migration
                 'Archaeology',
                 'History'
                 ])->nullable();
+            $table->enum('type', ['first_paragraph', 'second_paragraph','paginate'])->nullable();
             $table->string('content_title_en')->nullable();
             $table->string('content_title_ar')->nullable();
             $table->longText('content_en')->nullable();
             $table->longText('content_ar')->nullable();
             $table->string('photos')->nullable();
-            $table->boolean('is wallpaper');
-            $table->enum('type', [
-                'landing page',
+            $table->boolean('is_wallpaper');
+            $table->enum('page', [
+                'landing_page',
                 'blogs',
-                'explore-hotels',
-                'explore-restaurants',
-                'explore-tourist sites',
-                'recommendations-hotels',
-                'recommendations-restaurants',
-                'recommendations-Resorts',
-                'recommendations-natural sites',
-                'recommendations-historical sites',
-                'blogs-history',
-                'blogs-monuments',
-                'blogs-Civilizations',
-                'blogs-nature',
-                'blogs-tourism',
+                'explore_hotels',
+                'explore_restaurants',
+                'explore_tourist_sites',
+                'recommendations_hotels',
+                'recommendations_restaurants',
+                'recommendations_Resorts',
+                'recommendations_natural sites',
+                'recommendations_historical sites',
+                'about_history',
+                'about_monuments',
+                'about_Civilizations',
+                'about_nature',
+                'about_tourism',
                 ])->nullable();
 
             $table->timestamps();

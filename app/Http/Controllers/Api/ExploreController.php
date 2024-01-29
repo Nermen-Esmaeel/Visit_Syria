@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\{Hotel,Rating,Restaurant,TouristSite};
+use App\Models\{Hotel,Rating,Restaurant, StaticInformation, TouristSite};
 use App\Traits\{CommentsTrait,FavoritesTrait};
 use App\Helpers\ApiResponse;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Database\Seeders\HotelSeeder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{RatingRequest,CommentRequest};
 use function PHPUnit\Framework\isEmpty;
-use App\Http\Resources\Api\{HotelResource,RestaurantResource,Tourist_sitesResource};
+use App\Http\Resources\Api\{HotelResource,RestaurantResource,Tourist_sitesResource, WallpaperResource};
 
 
 
@@ -88,16 +88,22 @@ class ExploreController extends Controller
     public function HotelsIndex(){
 
         $hotels = Hotel::paginate(9);
-
-
+        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'page'=>'explore_hotels'])->first();
+        
+        
         if (count($hotels)>0) {
 
             $hotels = HotelResource::collection($hotels);
-            return ApiResponse::sendResponse(200,'ok',$hotels);
+            
+            $data=[
+                'Wallpaper' =>new WallpaperResource($wallpaper),
+                'Hotels'    =>$hotels,
+            ];
+            return ApiResponse::sendResponse(200,'ok',$data);
 
         } else {
 
-            return ApiResponse::sendResponse(200,'There is no hotels available',[]);
+            return ApiResponse::sendResponse(200,'There is no hotels available',new WallpaperResource($wallpaper));
 
         }
 
@@ -185,6 +191,7 @@ class ExploreController extends Controller
 
         $restaurant = Restaurant::find($id);
 
+
         if ($restaurant) {
 
             $restaurant = Restaurant::query()->where('id', '=', $id)->with(['rating', 'services' ,'photos','comments'])->first();
@@ -203,15 +210,21 @@ class ExploreController extends Controller
     public function RestaurantsIndex(){
 
         $restaurants = Restaurant::paginate(9);
+        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'page'=>'explore_restaurants'])->first();
+
 
         if (count($restaurants)>0) {
 
             $restaurants = RestaurantResource::collection($restaurants);
-            return ApiResponse::sendResponse(200,'ok',$restaurants);
+            $data=[
+                'Wallpaper' =>new WallpaperResource($wallpaper),
+                'Restaurants'    =>$restaurants,
+            ];
+            return ApiResponse::sendResponse(200,'ok',$data);
 
         } else {
 
-            return ApiResponse::sendResponse(200,'There is no restaurants available',[]);
+            return ApiResponse::sendResponse(200,'There is no restaurants available',new WallpaperResource($wallpaper));
 
         }
 
@@ -273,15 +286,21 @@ class ExploreController extends Controller
     public function SitesIndex(){
 
         $sites = TouristSite::paginate(9);
+        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'page'=>'explore_tourist_sites'])->first();
+
 
         if (count($sites)>0) {
 
             $sites = Tourist_sitesResource::collection($sites);
-            return ApiResponse::sendResponse(200,'ok',$sites);
+            $data=[
+                'Wallpaper' =>new WallpaperResource($wallpaper),
+                'Sites'    =>$sites,
+            ];
+            return ApiResponse::sendResponse(200,'ok',$data);
 
         } else {
 
-            return ApiResponse::sendResponse(200,'There is no sites available',[]);
+            return ApiResponse::sendResponse(200,'There is no sites available',new WallpaperResource($wallpaper));
 
         }
 

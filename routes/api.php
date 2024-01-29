@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\ExploreController;
+use App\Http\Controllers\Api\LandingController;
 use App\Http\Resources\Api\HotelRatingResource;
 use App\Http\Controllers\Api\Explore\HotelController;
 
@@ -25,6 +26,7 @@ use App\Http\Controllers\Api\Explore\HotelController;
 
 
 
+    #########################/Explore SECTION /#########################
 
 Route::prefix('Explore')->controller(ExploreController::class)->group(function(){
 
@@ -49,5 +51,16 @@ Route::prefix('Explore')->controller(ExploreController::class)->group(function()
     });
 
 });
+
+    #########################/Landing page SECTION /#########################
+
+
+Route::prefix('Landing')->controller(LandingController::class)->group(function(){
+
+    Route::get('index','index');
+
+
+});
+
 
 
