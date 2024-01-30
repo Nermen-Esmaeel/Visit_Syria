@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TouristSite;
+use App\Models\{TouristSite,Recommendation};
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -59,6 +59,9 @@ class SiteSeeder extends Seeder
                 $site->working_time = $working_time[$i];
                 $site->save();
             }
-
+            Recommendation::create([
+                'recommendatable_type' => TouristSite::class,
+                'recommendatable_id' => $site->id,
+            ]);
     }
 }

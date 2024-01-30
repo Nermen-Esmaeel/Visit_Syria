@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Restaurant;
+use App\Models\{Restaurant,Recommendation};
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -74,5 +74,10 @@ class RestaurantSeeder extends Seeder
             $restaurant->working_time = $working_time[$i];
             $restaurant->save();
         }
+
+        Recommendation::create([
+            'recommendatable_type' => Restaurant::class,
+            'recommendatable_id' => $restaurant->id,
+        ]);
     }
 }

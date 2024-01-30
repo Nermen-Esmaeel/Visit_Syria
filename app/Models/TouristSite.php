@@ -88,6 +88,9 @@ class TouristSite extends Model
         return $this->belongsTo(city::class, 'city_id');
     }
 
-
+    public function Recommended(): MorphMany
+    {
+       return $this->morphMany(Recommendation::class , 'recommendatable') ;
+    }
 
 }

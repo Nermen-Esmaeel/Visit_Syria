@@ -139,7 +139,10 @@ class Restaurant extends Model
         return $this->hasMany(Service::class);
     }
 
-    
+    public function Recommended(): MorphMany
+    {
+       return $this->morphMany(Recommendation::class , 'recommendatable') ;
+    }
 
 
 

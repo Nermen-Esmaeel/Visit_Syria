@@ -152,7 +152,10 @@ class Hotel extends Model
         return $this->hasMany(Room::class);
     }
 
+    public function Recommended(): MorphMany
+    {
+       return $this->morphMany(Recommendation::class , 'recommendatable') ;
+    }
 
-   
- 
+
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Hotel;
+use App\Models\{Hotel,Recommendation};
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -75,5 +75,10 @@ class HotelSeeder extends Seeder
             $hotel->working_time = $working_time[$i];
             $hotel->save();
         }
+
+        Recommendation::create([
+            'recommendatable_type' => Hotel::class,
+            'recommendatable_id' => $hotel->id,
+        ]);
     }
 }

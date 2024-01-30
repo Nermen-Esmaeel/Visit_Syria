@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Helpers\ApiResponse;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Api\LandingPhotosResource;
-use App\Http\Resources\Api\RecommendationResource;
-use App\Http\Resources\Api\StaticContentResource;
-use App\Http\Resources\Api\WallpaperResource;
-use App\Models\Recommendation;
-use App\Models\StaticInformation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Resources\Api\{RestaurantResource, HotelResource,Tourist_sitesResource};
+use App\Models\{Recommendation,StaticInformation};
+use App\Http\Resources\Api\{WallpaperResource,LandingPhotosResource, StaticContentResource, RecommendationResource};
 
 class LandingController extends Controller
 {
@@ -19,7 +17,23 @@ class LandingController extends Controller
         $landing_Wallpaper = StaticInformation::where(['page'=>'landing_page','is_wallpaper'=>true])->first();
         $landing_Paginate = StaticInformation::where(['page'=>'landing_page','type'=>'paginate'])->take(4)->get();
         $General_content = StaticInformation::where(['page'=>'landing_page','type'=>'first_paragraph'])->first();
-        $recommended = Recommendation::get();
+
+        //get recomendation with recommendatable; recommendatable:get data related specific model
+        $recommended = Recommendation::with('recommendatable')->paginate(2);
+
+        //
+        $transformedrecommended = $recommended->through(function ($rec) {
+            if ($rec->recommendatable_type === 'App\Models\Hotel') {
+                return new HotelResource($rec->recommendatable);
+            }
+            elseif ($rec->recommendatable_type === 'App\Models\Restaurant') {
+                return new RestaurantResource($rec->recommendatable);
+            }
+            elseif($rec->recommendatable_type === 'App\Models\TouristSite') {
+                return new Tourist_sitesResource($rec->recommendatable);
+            }
+        });
+
         $blog = StaticInformation::where(['page'=>'landing_page','type'=>'second_paragraph'])->first();
 
         $data=[
@@ -27,7 +41,7 @@ class LandingController extends Controller
             'wallpaper' => new WallpaperResource($landing_Wallpaper),
             'paginate_photos' =>LandingPhotosResource::collection($landing_Paginate),
             'General' =>new StaticContentResource($General_content),
-            'Recommendations' =>RecommendationResource::collection($recommended) ,
+            'Recommendations' => $transformedrecommended,
             'Blog' =>new StaticContentResource($blog),
 
         ];
