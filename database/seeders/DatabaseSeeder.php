@@ -40,6 +40,8 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             OfferSeeder::class,
             LandingPageSeeder::class,
+            PhotoSeeder::class,
+            BlogSeeder::class,
 
         ]);
     }

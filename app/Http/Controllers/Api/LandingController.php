@@ -14,12 +14,12 @@ class LandingController extends Controller
 {
     public function index(){
 
-        $landing_Wallpaper = StaticInformation::where(['page'=>'landing_page','is_wallpaper'=>true])->first();
-        $landing_Paginate = StaticInformation::where(['page'=>'landing_page','type'=>'paginate'])->take(4)->get();
-        $General_content = StaticInformation::where(['page'=>'landing_page','type'=>'first_paragraph'])->first();
+        $landing_Wallpaper = StaticInformation::where(['layout'=>'landing_page','is_wallpaper'=>true])->first();
+        $landing_Paginate = StaticInformation::where(['layout'=>'landing_page','type'=>'paginate'])->take(4)->get();
+        $General_content = StaticInformation::where(['layout'=>'landing_page','type'=>'first_paragraph'])->first();
 
         //get recomendation with recommendatable; recommendatable:get data related specific model
-        $recommended = Recommendation::with('recommendatable')->paginate(2);
+        $recommended = Recommendation::with('recommendatable')->paginate(3);
 
         //
         $transformedrecommended = $recommended->through(function ($rec) {
@@ -34,7 +34,7 @@ class LandingController extends Controller
             }
         });
 
-        $blog = StaticInformation::where(['page'=>'landing_page','type'=>'second_paragraph'])->first();
+        $blog = StaticInformation::where(['layout'=>'landing_page','type'=>'second_paragraph'])->first();
 
         $data=[
 

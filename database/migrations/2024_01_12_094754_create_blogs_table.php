@@ -15,17 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
-            $table->string('street_en');
-            $table->string('street_ar');
-            $table->string('city_en');
-            $table->string('city_ar');
             $table->enum('category', [
                 'Archaeologic',
                 'Natural',
-                ])->nullable();
+                ]);
             $table->string('photo_cover');
-            $table->string('content_title_en');
-            $table->string('content_title_ar');
+            $table->string('title_en');
+            $table->string('title_ar');
             $table->longText('content_en');
             $table->longText('content_ar');
             $table->softDeletes();

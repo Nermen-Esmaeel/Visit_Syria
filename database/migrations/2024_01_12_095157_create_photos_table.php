@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->morphs('photoable');
+            $table->enum('type', ['Pagination_Picture', 'Main_Pictures','Reservation_Pictures','Menu']);
             $table->string('photo_path');
             $table->timestamps();
         });

@@ -48,26 +48,9 @@ class ExploreController extends Controller
     }
     #########################/Rating SECTION /#########################
 
-    public function Rating(Request $request){
+    public function Rating(RatingRequest $request){
 
-        if ($request->header('lan')=="en") {
-
-            $request->validate([
-                'Service_name'=>'required|exists:ratings,name_en',
-                'Rating_value'=>'required|between:0,5',
-
-            ]);
-
-        }
-
-        elseif($request->header('lan')=="ar")
-        {
-            $request->validate([
-                'Service_name'=>'required|exists:ratings,name_ar',
-                'Rating_value'=>'required|between:0,5',
-
-            ]);
-        }
+        $request->validated();
 
         $Service_rating_id = $request->input('Service_rating_id');
         $Service_rating = Rating::find($Service_rating_id);
@@ -88,7 +71,7 @@ class ExploreController extends Controller
     public function HotelsIndex(){
 
         $hotels = Hotel::paginate(9);
-        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'page'=>'explore_hotels'])->first();
+        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'layout'=>'explore_hotels'])->first();
         
         
         if (count($hotels)>0) {
@@ -210,7 +193,7 @@ class ExploreController extends Controller
     public function RestaurantsIndex(){
 
         $restaurants = Restaurant::paginate(9);
-        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'page'=>'explore_restaurants'])->first();
+        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'layout'=>'explore_restaurants'])->first();
 
 
         if (count($restaurants)>0) {
@@ -286,7 +269,7 @@ class ExploreController extends Controller
     public function SitesIndex(){
 
         $sites = TouristSite::paginate(9);
-        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'page'=>'explore_tourist_sites'])->first();
+        $wallpaper = StaticInformation::where(['is_wallpaper'=>true,'layout'=>'explore_tourist_sites'])->first();
 
 
         if (count($sites)>0) {

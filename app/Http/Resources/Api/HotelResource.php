@@ -28,7 +28,6 @@ class HotelResource extends JsonResource
                 'Title' =>$this->title_en,
                 'Rating' =>$this->Hotel_rating,
                 'Description' => $this->description_en,
-                'Photos' =>PhotosResource::collection($this->whenLoaded('photos')),
                 'Available_rooms' => RoomsResource::collection($this->whenLoaded('rooms')),
                 'Offers' => OffersResource::collection($this->whenLoaded('offers')),
                 'street_en' => $this->street_en,
@@ -43,6 +42,7 @@ class HotelResource extends JsonResource
                 'Working_time' => $this->working_time,
                 'Comments'  =>CommentsResource::collection($this->whenLoaded('comments')),
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
+                'photos' =>PhotosResource::collection($this->photos) ,
 
 
             ];
@@ -58,7 +58,6 @@ class HotelResource extends JsonResource
                 'Title' =>$this->title_ar,
                 'Rating' =>$this->Hotel_rating,
                 'Description' => $this->description_ar,
-                'Photos' =>$this->photos,
                 'Available_rooms' => RoomsResource::collection($this->whenLoaded('rooms')),
                 'Discounts' => $this->discounts,
                 'street_ar' => $this->street_ar,
@@ -73,6 +72,7 @@ class HotelResource extends JsonResource
                 'Working_time' => $this->working_time,
                 'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
+                'photos' =>PhotosResource::collection($this->photos) ,
 
 
             ];

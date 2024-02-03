@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Restaurant,Recommendation};
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
+use App\Models\{Restaurant,Recommendation};
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RestaurantSeeder extends Seeder
@@ -73,6 +74,14 @@ class RestaurantSeeder extends Seeder
             $restaurant->website = $website[$i];
             $restaurant->working_time = $working_time[$i];
             $restaurant->save();
+
+            Comment::create([
+                'user_id' =>1,
+                'commentable_type' =>Restaurant::class,
+                'commentable_id' =>$restaurant->id,
+                'commentable_id' =>$restaurant->id,
+                'content'        =>'I liked the services in this Restaurant, everything is perfect',
+            ]);
         }
 
         Recommendation::create([

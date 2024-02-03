@@ -24,12 +24,12 @@ class Tourist_sitesResource extends JsonResource
                 'Title' =>$this->title_en,
                 'Site_rating' =>$this->Site_rating,
                 'Description' => $this->description_en,
-                'Photos' =>PhotosResource::collection($this->whenLoaded('photos')),
                 'city_en'   => $this->city_en,
                 'Email' => $this->email,
                 'Working_time' => $this->working_time,
                 'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
+                'photos' =>PhotosResource::collection($this->whenLoaded('photos')) ,
 
 
             ];
@@ -43,12 +43,12 @@ class Tourist_sitesResource extends JsonResource
                 'Title' =>$this->title_ar,
                 'Site_rating' =>$this->Site_rating,
                 'Description' => $this->description_ar,
-                'Photos' =>PhotosResource::collection($this->whenLoaded('photos')),
                 'city_ar'   => $this->city_ar,
                 'Email' => $this->email,
                 'Working_time' => $this->working_time,
                 'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
+                'photos' =>PhotosResource::collection($this->whenLoaded('photos')) ,
 
             ];
         }
