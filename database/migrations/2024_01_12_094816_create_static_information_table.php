@@ -15,13 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins')->cascadeOnDelete();
             $table->string('picture_name');
-            $table->enum('category', [
-                'Tourism',
-                'Natural',
-                'Civilizations',
-                'Archaeology',
-                'History'
-                ])->nullable();
             $table->enum('type', ['first_paragraph', 'second_paragraph','paginate'])->nullable();
             $table->string('content_title_en')->nullable();
             $table->string('content_title_ar')->nullable();
@@ -41,13 +34,13 @@ return new class extends Migration
                 'recommendations_Resorts',
                 'recommendations_natural_sites',
                 'recommendations_historical_sites',
-                'about_history',
-                'about_monuments',
-                'about_Civilizations',
-                'about_nature',
-                'about_tourism',
+                'Tourism',
+                'Natural',
+                'Civilizations',
+                'Archaeology',
+                'History'
                 ])->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

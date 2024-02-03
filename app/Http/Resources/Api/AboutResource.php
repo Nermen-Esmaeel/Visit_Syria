@@ -5,7 +5,7 @@ namespace App\Http\Resources\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BlogResource extends JsonResource
+class AboutResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,12 @@ class BlogResource extends JsonResource
     public function toArray($request): array
     {
         if ($request->header('lan')=='en') {
+            
             return [
-                'Blog_id' =>$this->id,
-                'City' =>new CityResource($this->city),
-                'Cover_path' =>$this->photo_cover,
+                'Article_id' =>$this->id,
                 'Title' =>$this->title_en,
                 'Description' => $this->content_en,
+                
                 'photos' =>PhotosResource::collection($this->photos) ,
                 
 
@@ -30,8 +30,6 @@ class BlogResource extends JsonResource
            
             return [
                 'Blog_id' =>$this->id,
-                'City' =>new CityResource($this->city),
-                'Cover_path' =>$this->photo_cover,
                 'Title' =>$this->title_ar,
                 'Description' => $this->content_ar,
                 'photos' =>PhotosResource::collection($this->photos) ,
