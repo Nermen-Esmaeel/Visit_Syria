@@ -28,18 +28,19 @@ return new class extends Migration
             $table->longText('content_en')->nullable();
             $table->longText('content_ar')->nullable();
             $table->string('photos')->nullable();
-            $table->boolean('is_wallpaper');
-            $table->enum('page', [
+            $table->boolean('is_wallpaper')->default(false);
+            $table->enum('layout', [
                 'landing_page',
-                'blogs',
+                'blogs_Natural',
+                'blogs_Archaeology',
                 'explore_hotels',
                 'explore_restaurants',
                 'explore_tourist_sites',
                 'recommendations_hotels',
                 'recommendations_restaurants',
                 'recommendations_Resorts',
-                'recommendations_natural sites',
-                'recommendations_historical sites',
+                'recommendations_natural_sites',
+                'recommendations_historical_sites',
                 'about_history',
                 'about_monuments',
                 'about_Civilizations',

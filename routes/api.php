@@ -4,6 +4,7 @@ use app\Helpers\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\ExploreController;
 use App\Http\Controllers\Api\LandingController;
 use App\Http\Resources\Api\HotelRatingResource;
@@ -57,10 +58,19 @@ Route::prefix('Explore')->controller(ExploreController::class)->group(function()
 
 Route::prefix('Landing')->controller(LandingController::class)->group(function(){
 
-    Route::get('index','index');
+    Route::get('/','index');
 
 
 });
 
+    #########################/Landing page SECTION /#########################
 
+
+    Route::prefix('Blog')->controller(BlogController::class)->group(function(){
+
+        Route::get('/','index');
+        Route::get('Article/{id}','Article');
+    
+    
+    });
 

@@ -13,6 +13,8 @@ class OfferSeeder extends Seeder
      */
     public function run(): void
     {
+
+        
         Offer::create([
             'hotel_id' => 3 ,
             'content_en' => 'n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying',

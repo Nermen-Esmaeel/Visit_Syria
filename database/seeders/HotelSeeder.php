@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Hotel,Recommendation};
+use App\Models\{Comment, Hotel,Recommendation};
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -13,7 +13,7 @@ class HotelSeeder extends Seeder
      */
     public function run(): void
     {
-        $city_id = [8 ,8,8];
+        $city_id = [2,5,2];
         $street_en = ['Bab Toma main Road', 'Blue Beach Road', 'Umayyad Square'];
         $street_ar = ['طريق باب توما الرئيسي', 'الشاطئ الأزرق', 'ساحة الامويين'];
         $city_en = ['Damascus', 'lattakia', 'Damascus'];
@@ -52,7 +52,7 @@ class HotelSeeder extends Seeder
 
         for($i=0; $i<3;$i++) {
             $hotel=new Hotel();
-            //governorates
+            
             $hotel->city_id = $city_id[$i];
             $hotel->street_en =  $street_en[$i];
             $hotel->street_ar =  $street_ar[$i];
@@ -74,6 +74,13 @@ class HotelSeeder extends Seeder
             $hotel->website = $website[$i];
             $hotel->working_time = $working_time[$i];
             $hotel->save();
+            Comment::create([
+                'user_id' =>1,
+                'commentable_type' =>Hotel::class,
+                'commentable_id' =>$hotel->id,
+                'commentable_id' =>$hotel->id,
+                'content'        =>'I liked the services in this hotel, everything is perfect',
+            ]);
         }
 
         Recommendation::create([

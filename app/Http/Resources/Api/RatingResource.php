@@ -20,6 +20,7 @@ class RatingResource extends JsonResource
                 'ID' =>$this->id,
                 'Service_name' =>$this->name_en,
                 'Rating_value' =>$this->value,
+                'Rating_count' =>$this->rating_count,
                 
             ];
         }
@@ -29,6 +30,8 @@ class RatingResource extends JsonResource
                 'ID' =>$this->id,
                 'Service_name' =>$this->name_ar,
                 'Rating_value' =>$this->value,
+                'Rating_count' =>$this->rating_count,
+
                 
             ];
         }

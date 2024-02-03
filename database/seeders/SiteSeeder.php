@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\{TouristSite,Recommendation};
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
+use App\Models\{TouristSite,Recommendation};
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SiteSeeder extends Seeder
@@ -58,6 +59,14 @@ class SiteSeeder extends Seeder
                 $site->email = $email[$i];
                 $site->working_time = $working_time[$i];
                 $site->save();
+
+                Comment::create([
+                    'user_id' =>1,
+                    'commentable_type' =>TouristSite::class,
+                    'commentable_id' =>$site->id,
+                    'commentable_id' =>$site->id,
+                    'content'        =>'Just a unique Historical site in Syria',
+                ]);
             }
             Recommendation::create([
                 'recommendatable_type' => TouristSite::class,
