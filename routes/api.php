@@ -1,6 +1,7 @@
 <?php
 
 use app\Helpers\ApiResponse;
+use App\Http\Controllers\Api\AboutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -72,5 +73,12 @@ Route::prefix('Landing')->controller(LandingController::class)->group(function()
         Route::get('Article/{id}','Article');
     
     
+    });
+
+    #########################/Landing page SECTION /#########################
+    Route::prefix('About')->controller(AboutController::class)->group(function(){
+
+        Route::get('/{section}','index');
+
     });
 

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class StaticInformation extends Model
+class About extends Model
 {
     use HasFactory;
 
@@ -19,13 +19,14 @@ class StaticInformation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'picture_name',
-        'content_title_en',
-        'content_title_ar',
+        
+        'title_en',
+        'title_ar',
         'content_en',
         'content_ar',
-        'photo',
+        
     ];
+
 
     /**
      * Get the admin that owns the StaticInformation
