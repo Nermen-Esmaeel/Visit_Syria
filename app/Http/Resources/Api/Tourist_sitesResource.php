@@ -27,9 +27,9 @@ class Tourist_sitesResource extends JsonResource
                 'city_en'   => $this->city_en,
                 'Email' => $this->email,
                 'Working_time' => $this->working_time,
-                'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
+                'Comments'  => CommentsResource::collection($this->comments),
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
-                'photos' =>PhotosResource::collection($this->whenLoaded('photos')) ,
+                'photos' =>PhotosResource::collection($this->photos) ,
 
 
             ];
@@ -46,9 +46,9 @@ class Tourist_sitesResource extends JsonResource
                 'city_ar'   => $this->city_ar,
                 'Email' => $this->email,
                 'Working_time' => $this->working_time,
-                'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
+                'Comments'  => CommentsResource::collection($this->comments),
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
-                'photos' =>PhotosResource::collection($this->whenLoaded('photos')) ,
+                'photos' =>PhotosResource::collection($this->photos) ,
 
             ];
         }

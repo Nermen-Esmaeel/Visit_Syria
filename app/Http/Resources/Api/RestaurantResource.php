@@ -20,8 +20,8 @@ class RestaurantResource extends JsonResource
             return [
                 'Restaurant_id' =>$this->id,
                 'City' =>new CityResource($this->city),
-                'Services_rating'=>RatingResource::collection($this->whenLoaded('rating')),
-                'Services' =>ServicesResource::collection($this->whenLoaded('services')),
+                'Services_Rating' =>RatingResource::collection($this->rating),
+                'Services' =>ServicesResource::collection($this->services),
                 'Cover_path' =>$this->photo_cover,
                 'Logo_path' =>$this->photo_logo,
                 'Title' =>$this->title_en,
@@ -38,9 +38,8 @@ class RestaurantResource extends JsonResource
                 'Website' => $this->website,
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
-                'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
-                'photos' =>PhotosResource::collection($this->whenLoaded('photos')) ,
-
+                'Comments'  => CommentsResource::collection($this->comments),
+                'photos' =>PhotosResource::collection($this->photos) ,
 
             ];
 
@@ -48,8 +47,8 @@ class RestaurantResource extends JsonResource
             return [
                 'Restaurant_id' =>$this->id,
                 'City' =>new CityResource($this->city),
-                'Services_rating'=>RatingResource::collection($this->whenLoaded('rating')),
-                'Services' => ServicesResource::collection($this->whenLoaded('services')),
+                'Services_Rating' =>RatingResource::collection($this->rating),
+                'Services' =>ServicesResource::collection($this->services),
                 'Cover_path' =>$this->photo_cover,
                 'Logo_path' =>$this->photo_logo,
                 'Title' =>$this->title_ar,
@@ -66,8 +65,8 @@ class RestaurantResource extends JsonResource
                 'Website' => $this->website,
                 'Working_time' => $this->working_time,
                 'number of comments' => $this->comments->where('deleted_at',null)->count(),
-                'Comments'  => CommentsResource::collection($this->whenLoaded('comments')),
-                'photos' =>PhotosResource::collection($this->whenLoaded('photos')) ,
+                'Comments'  => CommentsResource::collection($this->comments),
+                'photos' =>PhotosResource::collection($this->photos) ,
 
 
             ];
