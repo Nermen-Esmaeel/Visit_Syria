@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'username' => 'user',
-            'firstname' => 'User',
-            'lastname' => 'User',
+            'name' => 'User',
             'email' => 'admin@argon.com',
             'password' => bcrypt('secret'),
             'photo'    => 'User_images/user_image_2333.jpg',
