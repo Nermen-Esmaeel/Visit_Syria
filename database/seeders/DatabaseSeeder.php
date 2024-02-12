@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             PhotoSeeder::class,
             BlogSeeder::class,
             AboutSeeder::class,
+            RecommendationSeeder::class,
 
         ]);
     }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ExploreController;
 use App\Http\Controllers\Api\LandingController;
 use App\Http\Resources\Api\HotelRatingResource;
 use App\Http\Controllers\Api\Explore\HotelController;
+use App\Http\Controllers\RecommendationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,10 +76,36 @@ Route::prefix('Landing')->controller(LandingController::class)->group(function()
     
     });
 
-    #########################/Landing page SECTION /#########################
+    #########################/About page SECTION /#########################
     Route::prefix('About')->controller(AboutController::class)->group(function(){
 
         Route::get('/{section}','index');
+
+    });
+
+    #########################/Recommendations SECTION /#########################
+
+    Route::prefix('Recommendations')->controller(RecommendationController::class)->group(function(){
+
+        Route::get('/Hotels','RecommendedHotels');
+        Route::get('/Restaurants','RecommendedRestaurants');
+        Route::post('/Sites','RecommendedSites');
+        Route::get('/ShowHotel/{id}','ShowRecommendedHotel');
+        Route::get('/ShowRestaurant/{id}','ShowRecommendedRestaurant');
+        Route::get('/ShowSite/{id}','ShowRecommendedSite');
+
+
+        Route::middleware('auth:sanctum')->group(function(){
+
+            Route::post('/iLikeThisHotel','iLikeThisHotel');
+            Route::post('/iLikeThisRestaurant','iLikeThisRestaurant');
+            Route::post('/iLikeThisSite','iLikeThisSite');
+            Route::post('/AddCommentToHotel','AddCommentToHotel');
+            Route::post('/AddCommentToRestaurant','AddCommentToRestaurant');
+            Route::post('/AddCommentToSite','AddCommentToSite');
+    
+            Route::post('/Rating','Rating');
+        });
 
     });
 

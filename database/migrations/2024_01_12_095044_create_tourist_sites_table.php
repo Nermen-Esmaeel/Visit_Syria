@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
             $table->string('city_en');
             $table->string('city_ar');
+            $table->enum('type', ['Natural', 'Archeological'])->nullable();
             $table->string('photo_cover');
             $table->string('photo_logo');
             $table->string('title_en');
