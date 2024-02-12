@@ -9,82 +9,49 @@ use App\Http\Requests\StoreUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use PHPUnit\Framework\Constraint\IsTrue;
-
 use function PHPUnit\Framework\isTrue;
+use App\Providers\RouteServiceProvider;
+
+use Laravel\Socialite\Facades\Socialite;
+use PHPUnit\Framework\Constraint\IsTrue;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     
 
-    public function register(Request $request)
-    {
-        $user = $request->validate([
-            'email'=>'required|string|email|unique:users',
-            'password'=>'required|min:8',
-        ]);
-       
-        $user = User::create([
-            'username' =>'username',
-            'email' => $user['email'],
-            'password' => Hash::make($user['password']),
-            
-        ]);
+   
+    public function redirectToGoogle()  {
 
-
-      
-
-        $token = $user->createToken('authToken')->plainTextToken;
-
-        return ApiResponse::sendResponse(200, $token, 'registered successfully', []);
-    }
-
-
-    public function login(Request $request)
-    {   
-       $request->validate([
-            'email' => 'required',
-            'password' => 'required'
-       ]);
-       
-       $user = User::where('email', $request->email)->first();
-       
-    if (! $user || ! Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
-    }
-    $token = $user->createToken('authToken')->plainTextToken;
- 
-    return ApiResponse::sendResponse(200, $token, 'successfully login,welcome!', []);
-      
-      
-      
-      /* if (auth::attempt([
-                'email'=>$request->email ,
-                'password'=>$request->password])) {
-                    
-
-            
-
-            $token = $user->createToken('authToken')->plainTextToken;
-    
-            return ApiResponse::sendResponse(200, $token, 'successfully login,welcome!', []);
-        }
+        return Socialite::with('google')->stateless()->redirect();
         
-
-        return response()->json([
-            'message' => 'error'
-        ], 401);*/
     }
+
+   public function handleGoogleCallback()
+    {   
+        $googleUser = Socialite::driver('google')->stateless()->user();
+        $user = User::where('email', $googleUser->email)->first();
+        if(!$user)
+        {
+            $user = User::create(['name' => $googleUser->name, 
+            'email' => $googleUser->email,
+            'photo' => $googleUser->avatar,
+            'password' =>Hash::make(rand(100000,999999))
+        ]);
+    }
+    
+        $token = $user->createToken('token-name')->plainTextToken;
+
+        return ApiResponse::sendResponse(200, $token, 'successfully login,welcome!', []);
+    }
+
 
     public function logout(Request $request)
     {   
         $request->user()->tokens()->delete();
+        return ApiResponse::sendResponse(200,null, 'Successfully logged out', []);
 
-        return response()->json([
-            'message' => 'Successfully logged out'
-        ]);
+        
     }
 }
+
