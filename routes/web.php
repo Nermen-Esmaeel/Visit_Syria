@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
     //hotel managment
     Route::resource('hotels', HotelController::class);
 
+    //restaurant management
+    Route::resource('restaurants', HotelController::class);
+
+
 
 
 
